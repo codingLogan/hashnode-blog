@@ -9,24 +9,6 @@ tags: git
 
 Git is essential for every flavor of developer out there, so it's good to understand the basics.  In this post I explain my thoughts on what every developer should know about git.
 
-### Summary of contents
-
-[What Git is not](#what-git-is-and-is-not)
-
-[Why you should use Git](#why-you-should-use-git)
-
-[Create a Git repository](#create-a-git-repository)
-
-[Track some files](#track-some-files)
-
-[Hide some secrets](#hide-some-secrets)
-
-[Add a feature branch](#add-a-feature-branch)
-
-[Merge a feature branch](#merge-a-feature-branch)
-
-[Store it in the cloud](#store-it-in-the-cloud)
-
 
 If you want to use git, you must first install it by following the instructions at [https://git-scm.com/](https://git-scm.com/)
 
