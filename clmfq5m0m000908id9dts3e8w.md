@@ -3,249 +3,180 @@ title: "Quickly Create An Express React Node Project"
 datePublished: Thu Dec 17 2020 19:00:00 GMT+0000 (Coordinated Universal Time)
 cuid: clmfq5m0m000908id9dts3e8w
 slug: quickly-create-an-express-react-node-project
-tags: git
+tags: javascript
 
 ---
 
-Git is essential for every flavor of developer out there, so it's good to understand the basics.  In this post I explain my thoughts on what every developer should know about git.
+This will be a pretty brief post, showing how you can quickly set up an Express app that can also be deployed to Heroku with minimal effort.
 
-### Summary of contents
+# Summary (you're welcome)
+1. Create a folder for your project and run _git init_ inside it
+1. Run _npx express-generator_ to create a basic Express app
+1. Run _npm install_
+1. ignore _node_modules_
+1. Run _npx create-react-app client_ to create a React client
+1. Modify Express to serve React's static files
+1. Create a root level package.json script to build client files, and run _npm run build_
+1. Run your entire app with _npm start_.
 
-[What Git is not](#what-git-is-and-is-not)
-
-[Why you should use Git](#why-you-should-use-git)
-
-[Create a Git repository](#create-a-git-repository)
-
-[Track some files](#track-some-files)
-
-[Hide some secrets](#hide-some-secrets)
-
-[Add a feature branch](#add-a-feature-branch)
-
-[Merge a feature branch](#merge-a-feature-branch)
-
-[Store it in the cloud](#store-it-in-the-cloud)
-
-
-If you want to use git, you must first install it by following the instructions at [https://git-scm.com/](https://git-scm.com/)
-
-&nbsp;
-### What Git is and is not <span id="what-git-is-and-is-not"/>
-I want to start by clarifying a piece of confusion that I had when I first heard of Git years ago.  Git is _not the same thing as GitHub_.
-
-_Git is a version control system_.  It keeps track of the changes to your files.  As part of its tracking, it also provides you with an evolving history of each of file.  What this means is you can look into the past and see previous saved "states" of your file, which is called a _commit_.
-
-_GitHub is just one place you can store your code_ in the cloud, there are many other options as well. To use Git, you do not even have to use GitHub, or any cloud service.  What these services allow you to do is share your code and collaborate with other people.
-
-In this post I am going to just cover what Git is, and in a future post I'll cover the basics of using cloud services to collaborate with others.
-
-&nbsp;
-### Why you should use Git <span id="why-you-should-use-git"/>
-I stated this already, but the benefits of using Git are these
-
-##### Changes are tracked
-
-Once you've initialized a folder as a Git repository, Git tracks all of the changes to your files within that folder.  "Changes" can be additional files, deleted files, more lines added to a file, lines removed from a file, etc.  Any changes to the files in the folder will now be tracked for you.  You choose when you want to save those changes to git by creating a _commit_.  Git will now use that commit as it's "clean" slate to track what has changed.
-
-I will go over creating commits later in the post.
-
-##### Ability to see history
-
-Every commit you make is accessible in the future.  You can go back and view the differences between commits, or, if you want, you can actually get an old version of the file back on your system by using the _checkout_ command.
-
-This is the basis of how libraries and frameworks have multiple versions you can choose from, different commits are flagged as those versions.
-
-##### Freedom to Experiment
-
-By default Git creates a default branch called "master" or "main".  With Git you can create as many branches of your code as you wish.  Essentially, when you create a branch you are creating a new version of your code where you can make whatever changes you'd like, _without affecting your previous work_.  This is useful if you want to add a new feature, or try something completely different.  Often in practice a branch is created by a developer when they begin work on a particular task.
-
-When work has been completed in a branch you can "merge" the branch back into the "main/master" branch so your work is all back in one place again.
-
-&nbsp;
-### Create a Git repository <span id="create-a-git-repository"/>
-
-To initialize a folder of yours as a Git repository, you can use this simple command while currently in the folder
+In the end you will have a repository that is holding both your front end application AND your back-end server code.  It makes for really easy deploys of your code because it's all in one place.  This is how it will look at the top level when we're done.
 ```
+bin/
+client/
+ |-node_modules/ (ignored)
+ |-public/
+ |-src/
+ |-.gitignore
+ |-package-lock.json
+ |-package.json
+ |-README.md
+node_modules/ (ignored)
+public/
+routes/
+views/
+.gitignore
+app.js
+package-lock.json
+package.json
+```
+
+There are improvements that could be made with this FOR SURE, but this should get you going like it did for me.
+
+Read on if you want more details for each step.
+
+## Create your project folder
+
+Lets start by creating a folder for our project and initializing it with git.
+```
+mkdir your-app-name
+cd your-app-name
 git init
 ```
 
-It will create a folder named _.git_, and that's where all the _magic tracking_ information is stored.  I have never had to dive into the folder, but that's how you know if a folder is being tracked by Git or not.
+## Create the Express app
 
-&nbsp;
-### Track some files <span id="track-some-files"/>
-When you're tracking files in Git you can have the files in a few different states
+Now we need our express application, I found recently that you can generate one really quickly by running this command.  
 
-_Untracked Files_:
-Git will show you when files are completely Untracked.
-
-_Working or Un-staged Changes_:
-These are files that have differences compared to the most recent commit or staged changes.  You will typically only "stage" your changes when you are confident that the changes are what you'll want to save in a commit.
-
-_Staged Changes_:
-These are changes that are being batched up in preparation to make a real commit.  When you make a commit, you are telling Git to put all of your staged changes into a commit and save it to the history of your project.
-
-It's worth noting, most developer tools will help you readily see your changes. When I work in VS Code frequently, there's a sidebar that shows me all of this information.
-
-&nbsp;
-#### Tracking the state of your files
-
-In order to accurately track files with Git, it's good to know how to check on the status of your new files, working changes and staged changes.
-
-Use this command to see what files are new, deleted, or modified, or currently staged for a commit.
+(note - the npx package runner lets you run commands even if you don't have the packages installed with npm.  See [this great article](https://www.freecodecamp.org/news/npm-vs-npx-whats-the-difference/) for more info)
 ```
-git status
+npx express-generator
 ```
 
-If I use git status right now for this post I have in progress, I get this output showing that I have a modified file, and it gives instructions for how to stage or commit them.
+This will create a folder structure that looks something like this.  Feel free to modify these files to your needs, but out of the box it's a _fully functional Express server_.
 ```
-codingLogan.github.io$ git status
-On branch git-basics
-Your branch is up to date with 'origin/git-basics'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   _posts/2020-12-07-git-essentials.md
-
-no changes added to commit (use "git add" and/or "git commit -a")
+bin/
+public/
+routes/
+views/
+app.js
+package.json
 ```
 
-If you want to review the actual changes made to that file, you use the _git diff_ command.  Honestly, it's kind of hard to read, but it shows additions and deletions made to the file.  There are many tools that make viewing the diff much easier.
-```
-git diff <filename>
-```
+Now... this automated generation added the proper dependencies for your express app to package.json, but did not install them via npm.  Install them now by running _npm install_
 
-To stage a file to git for the first time or to stage a file's modifications use:
-```
-git add <file>
-```
+## Sanity check, make sure it runs
 
-To unstage a file, Git shows that you can use
-```
-git restore --staged <file>
-```
+Run _npm start_ to start up your new express server
 
-Once you have staged all the changes you want to save to Git history, you can commit them.
+Go to [http://localhost:3000/](http://localhost:3000/) and check to see if you get a friendly "Welcome to Express" message.  If you do, you're good to go!
+
+## Git management
+
+You'll want to create a _.gitignore file at the root_ of your project to ignore various files...  Specifically, for any npm project it's _recommended to ignore node_modules_, so let's add this to a .gitignore file so we're not saving tracking info for installed packages.
 ```
-git commit
+node_modules
 ```
 
-When you use the command like this it will open an editor to add a message to your commit.  The editor may be different for you, but typically it's a _vim editor_
+At this point, you have a bunch of files generated for Express, and you should be ignoring node_modules, I'd recommend doing a git commit at this point but you do you.
 
-In order to write a message in a vim editor you'll have to do the following
-1. Hit the "i" key to enter _Insert Mode_
-1. Type your message
-1. Hit "Esc" to exit Insert Mode
-1. Type a ":wq" and hit Enter (saying you want to write and quit)
+## Create a React client for your app
 
-You can optionally give the commit a message from the command line
+Creating a React app structure has been made easy (makes me feel spoiled), by running this command from the root of the project.
 ```
-git commit -m "Finish commit example message"
+npx create-react-app client
 ```
 
-
-&nbsp;
-### Hide some secrets <span id="hide-some-secrets"/>
-
-What do I mean by secrets?  Well, there are projects that contain secrets, or API keys, or passwords, etc, that are needed in order to communicate with other services.  Sometimes these are stored in files in the project, which is ok, but...
-
-_DO NOT COMMIT ANY SECRETS TO GIT!_
-
-I'll say it one more time, I want to be sure it's clear...  Saving secrets to Git will permanently save those secrets to Git's history.  If you don't want the world to know your secrets, don't ever commit any.
-
-_PLEASE, DO NOT COMMIT ANY SECRETS TO GIT!_
-
-When a project needs to hold any secrets you should ignore those files and set them up manually wherever you need them.  Luckily Git provides you with a mechanism to prevent you from saving them in Git.
-
-Introducing the _.gitignore_ file.  The "." is part of the filename, as it's a hidden file.
-
-A very fast example for you.  Let's say we have a file named secrets.json, and we want to prevent Git from tracking it.
-1. create a .gitignore file at the root of your project
-1. Edit .gitignore and add _secrets.json_ to it
-    ```
-    secrets.json
-    ```
-
-Now, Git will not tell you about changes that happen to that file 👍.  (Phew... crisis averted)
-
-&nbsp;
-### Add a feature branch <span id="add-a-feature-branch"/>
-
-Branches are basically different volumes of code. I like to think of branches like library books because you
-- Can only have _one branch checked out at a time_, similar to library cards limiting you to a certain number of books.
-- Check them out to start working on them
-- Commit to them when you're done
-- Checkout another branch.
-
-Here are some useful commands with branches
-
-To view all branches you have on your machine
+If successful you will have a new folder in your project called _client_ and it will have these contents
 ```
-git branch
+client/
+ |-node_modules/ (ignored)
+ |-public/
+ |-src/
+ |-.gitignore
+ |-package-lock.json
+ |-package.json
+ |-README.md
 ```
 
-To create a branch, but don't check it out yet, then checkout the branch with the second command
-```
-git branch <branchname>
-git checkout <branchname>
-```
+Now, we're going to need to build the React app.  For convenience, lets create a build script at the root level, that will go into the client folder and run the build.
 
-To create a branch and check it out immediately, it's the same thing as running both commands above (I use this one all the time)
+Open up your root level package.json and make the scripts look like this
 ```
-git checkout -b <branchname>
-```
-
-Here's a concrete example to create a branch called "fantastic-feature" and start working on that branch
-```
-git branch fantastic-feature
-git checkout fantastic-feature
+"scripts": {
+    "start": "node ./bin/www",
+    "start-client": "npm start --prefix client"
+    "build": "npm run --prefix client build"
+},
 ```
 
-Remember, you can always verify what branch you are on by using either of these commands (I prefer git branch, but both work)
-```
-git branch
-git status
-```
+- _start_ will run your Express server
+- _start-client_ will run your client only
+- _build_ will build your client files
 
-Once you have created a branch, made some commits, and you feel the work is done, you are probably going to want to merge your code back into the "main/master" branch.  Unless you want to indefinitely have separate versions of your code (like Linux).
+I created the build and start-client commands on my own, and I'm not the most familiar with the syntax, but here's my shot at the explanation.  The command work for the client because when you run an npm command with the --prefix flag it runs the command (in our case _npm run_) as if you were in the _client_ folder.
 
-&nbsp;
-### Merge a feature branch <span id="merge-a-feature-branch"/>
+Anyway, try it out, running _npm run build_ from the root of your project should generate a new _build_ folder inside of client.
 
-To get your changes into a branch we need to do a few things
-1. Checkout the _destination branch_ you want all code to end up in
-1. Attempt a merge of your _feature branch_ into your _destination branch_
-    - (Maybe a future post) If the two branches have conflicting changes git won't be able to merge them automatically.  When this happens you'll need to resolve the conflicts manually.  This usually happens if both branches have changes to the same area of a file, so it doesn't know how to choose which change to keep.
+Then run _npm run start-client_ to see your React app running.
 
-Use this set of commands to merge your branch
+You can still run _npm start_ and see your Express app running.
+
+## Make Express serve the react app
+
+All you need to do to serve React's files is tell Express to look for them in the right place.  This is all I've had to do so far in a simple React app.
+
+Open up app.js and find the _express.static(_ line.  Make it look something like this, pointing to your React-built files
 ```
-git checkout <destination>
-git merge <feature>
-```
-or concretely...
-```
-git checkout master
-git merge fantastic-feature
+// Serve React's files instead of default public folder 
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 ```
 
-Master will now have ALL of your work, congrats!!! 👏👏👏
+Now when you start Express, it will first look for your /client/build/index.html file.  If it finds it, it will serve React for you.
 
-&nbsp;
-### Store it in the cloud <span id="store-it-in-the-cloud"/>
+To validate everything is working run _npm start_ and you will see React instead of Express
 
-I mostly wanted to bring to attention what options you have for storing your code for collaboration with other people.
+## Notes on Heroku deployment
 
-Popular choices are
-- [GitHub](https://github.com/)
-- [BitBucket](https://bitbucket.org/)
-- [GitLab](https://about.gitlab.com/) I'm not too familiar with this one, but I've seen it around
+The additional scripts we added earlier will allow Heroku to _build_ and _start_ your server thats holding your React files.  It looks for those two scripts when you deploy a Node project.
 
-&nbsp;
-### Conclusions
+A few more configs
+- To deploy to Heroku, they also want you to specify the Node version in your package.json, so lets add that.
+- And, unless you add your client app as a dependency you'll get errors when trying to run the above build command.  The root level package.json should have a dependency of your _client_.
+```
+  "dependencies": {
+    ...other entries...
+    "client": "file:client"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+```
 
-I hope this post helped in explaining a few of the basics of Git for you.
-- What Git is
-- How to track changes
-- How to create branches
-- How to merge branches back together
+When you update package.json with _new dependencies_ be sure to run a fresh _npm install_ to update your lock file accordingly.  Push your changes to GitHub and you're ready to deploy.
+
+
+1. Go to [Heroku.com](https://heroku.com)
+1. Create a new app
+1. Connect it to GitHub by choosing _Connect to GitHub_ in the deployment method section
+1. Then you can deploy it automatically or manually.  Once you do, your app should be visible.
+
+## Troubleshooting
+
+As I was learning how to do this Heroku was actually pretty helpful in showing me the errors.  If you run into issues, watch the logging.
+
+## Conclusion
+
+Getting a basic site up and running isn't that bad when you have good tooling available to you, and free hosting like Heroku.
+
+We just created a (M)ERN app without the M in a few minutes.
