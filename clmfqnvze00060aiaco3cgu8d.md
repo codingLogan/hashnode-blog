@@ -18,7 +18,7 @@ Here are three questions I'd like to explore
 - [What benefits do you get from automated testing?](#testing-benefits)
 - [What cost makes automated testing possible?](#costs)
 
-## Who Benefits
+## Who Benefits <span id="who-benefits"/>
 
 The benefits of automated testing are "many", and it can benefit many different people.  So, with automated testing in place what individuals actually end up benefiting from it?
 
@@ -42,7 +42,7 @@ Some questions to consider
 
 The old saying _"work smarter, not harder.."_ really applies to this scenario.  If a company requires more hours, and more effort than a normal workday from its employees, _burnout_ may become a real problem, I've seen it.
 
-## Testing Benefits
+## Testing Benefits <span id="testing-benefits"/>
 
 These are the primary benefits I see with automated testing
 - Confidence
@@ -101,7 +101,7 @@ The process of writing tests can also help discover unknown scenarios surroundin
 
 In summary of this section... By discussing feature expectations and writing proper tests, all the teams involved will gain a better understanding of the scenarios that exist inside of the software.
 
-## Costs
+## Costs <span id="costs"/>
 
 Hopefully you've been able to see some of the benefits of testing software, but what are the costs to getting this all going?  Mostly _time, education, and money_
 
