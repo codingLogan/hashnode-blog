@@ -18,7 +18,7 @@ A lot of time over the course of my career has been spent de-duplicating code.  
 [Duplicate Modules](#duplicate-modules)
 
 &nbsp;
-## Duplicate Lines
+## Duplicate Lines <span id="duplicate-lines"/>
 
 The most frequent kind of duplication that I've seen is lines of code within the same file.  More often than not, they aren't quite "duplicated", but they are changed just ever so slightly from each other.
 
@@ -75,7 +75,7 @@ disableButtons([
 A lof of the decision just depends on your specific application, but personally, I feel that de-duplicating lines in at least one way is always worth it for readability, and maintenance reasons.
 
 &nbsp;
-## Duplicate Functions
+## Duplicate Functions <span id="duplicate-functions"/>
 
 Sometimes when you are reading through code, and writing some of your own, you'll find that there are multiple functions doing the exact same thing, but they are declared in different places and named slightly different.  The problem comes in when both are actually used in various places.
 
@@ -120,7 +120,7 @@ With this strategy, you can take an incremental approach to removing the usage o
 You'll need to take care to test all areas as you deprecate it's usage, and then plan to chop the function out of your code in a future version when all code has been moved to the direct usage of the _chosen one_.
 
 &nbsp;
-## Duplicate Modules
+## Duplicate Modules <span id="duplicate-modules"/>
 
 With this one, I don't mean two of the same module, but rather two modules that solve the same problem.  It's very possible that you could remove one and not the other.
 
