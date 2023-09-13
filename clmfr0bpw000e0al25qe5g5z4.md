@@ -22,7 +22,7 @@ Coding Interview Sections
 - [Last 45 minutes - Coding Challenge](#coding-challenge)
 - [Takeaways](#takeaway)
 
-## Background
+## Background <span id="background"/>
 
 The first part of the interview was extremely short, and was the easy part.  The interviewer, who was really kind and friendly, asked me to _introduce myself and my developer background_.  So, I dove right in and explained where I'd come from, what technologies I'd used up to now, and what I was currently working on.  Awesome, things were going alright so far, and I had nothing that was bothering me yet.
 
@@ -34,7 +34,7 @@ I explained everything that was involved with that project, like how I was able 
 
 Lesson Learned - When I get asked this question next time, I'll _select a project relevant to the role I want_.
 
-## Coding Challenge
+## Coding Challenge <span id="coding-challenge"/>
 
 _...The Coding Challenge..._
 
@@ -70,7 +70,7 @@ After finishing up with the interview, I didn't stop solving the challenge and w
 
 The best part is, for this particular problem, I now know what kind of data structure will support what I needed to solve.  If I run into something similar later I'll be able to remember this as a strengthening moment, not a complete failure.
 
-## Takeaways
+## Takeaways <span id="takeaway"/>
 
 Here's a quick rundown of the key takeaways and tips
 - When asked to give a background, highlight the role's requirements you're interviewing for
