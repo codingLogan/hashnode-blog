@@ -31,7 +31,7 @@ Git is essential for every flavor of developer out there, so it's good to unders
 If you want to use git, you must first install it by following the instructions at [https://git-scm.com/](https://git-scm.com/)
 
 &nbsp;
-### What Git is and is not
+### What Git is and is not <span id="what-git-is-and-is-not"/>
 I want to start by clarifying a piece of confusion that I had when I first heard of Git years ago.  Git is _not the same thing as GitHub_.
 
 _Git is a version control system_.  It keeps track of the changes to your files.  As part of its tracking, it also provides you with an evolving history of each of file.  What this means is you can look into the past and see previous saved "states" of your file, which is called a _commit_.
@@ -41,7 +41,7 @@ _GitHub is just one place you can store your code_ in the cloud, there are many 
 In this post I am going to just cover what Git is, and in a future post I'll cover the basics of using cloud services to collaborate with others.
 
 &nbsp;
-### Why you should use Git
+### Why you should use Git <span id="why-you-should-use-git"/>
 I stated this already, but the benefits of using Git are these
 
 ##### Changes are tracked
@@ -63,7 +63,7 @@ By default Git creates a default branch called "master" or "main".  With Git you
 When work has been completed in a branch you can "merge" the branch back into the "main/master" branch so your work is all back in one place again.
 
 &nbsp;
-### Create a Git repository
+### Create a Git repository <span id="create-a-git-repository"/>
 
 To initialize a folder of yours as a Git repository, you can use this simple command while currently in the folder
 ```
@@ -73,7 +73,7 @@ git init
 It will create a folder named _.git_, and that's where all the _magic tracking_ information is stored.  I have never had to dive into the folder, but that's how you know if a folder is being tracked by Git or not.
 
 &nbsp;
-### Track some files
+### Track some files <span id="track-some-files"/>
 When you're tracking files in Git you can have the files in a few different states
 
 _Untracked Files_:
@@ -146,7 +146,7 @@ git commit -m "Finish commit example message"
 
 
 &nbsp;
-### Hide some secrets
+### Hide some secrets <span id="hide-some-secrets"/>
 
 What do I mean by secrets?  Well, there are projects that contain secrets, or API keys, or passwords, etc, that are needed in order to communicate with other services.  Sometimes these are stored in files in the project, which is ok, but...
 
@@ -170,7 +170,7 @@ A very fast example for you.  Let's say we have a file named secrets.json, and w
 Now, Git will not tell you about changes that happen to that file 👍.  (Phew... crisis averted)
 
 &nbsp;
-### Add a feature branch
+### Add a feature branch <span id="add-a-feature-branch"/>
 
 Branches are basically different volumes of code. I like to think of branches like library books because you
 - Can only have _one branch checked out at a time_, similar to library cards limiting you to a certain number of books.
@@ -211,7 +211,7 @@ git status
 Once you have created a branch, made some commits, and you feel the work is done, you are probably going to want to merge your code back into the "main/master" branch.  Unless you want to indefinitely have separate versions of your code (like Linux).
 
 &nbsp;
-### Merge a feature branch
+### Merge a feature branch <span id="merge-a-feature-branch"/>
 
 To get your changes into a branch we need to do a few things
 1. Checkout the _destination branch_ you want all code to end up in
@@ -232,7 +232,7 @@ git merge fantastic-feature
 Master will now have ALL of your work, congrats!!! 👏👏👏
 
 &nbsp;
-### Store it in the cloud
+### Store it in the cloud <span id="store-it-in-the-cloud"/>
 
 I mostly wanted to bring to attention what options you have for storing your code for collaboration with other people.
 
