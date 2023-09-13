@@ -10,13 +10,6 @@ tags: kotlin, 100daysofcode
 Let's explore the basics of a Kotlin application, and just a few of the crucial pieces of the language.
 
 &nbsp;
-## Contents
-- [How to get started](#how-to-get-started)
-- [Kotlin entry point](#kotlin-entry-point)
-- [Variable types](#variable-types)
-- [Function declarations](#function-declarations)
-
-&nbsp;
 ## Foreword
 
 I am actively learning about Kotlin, and have only been using the language for a couple of weeks while following tutorials.  I will try my best to explain these concepts.  If you notice something incorrect please point it out and I'll be more than happy to fix it.
