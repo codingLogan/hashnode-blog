@@ -19,7 +19,7 @@ Here are the sections of this article
 
 [Lift State Up](#lift-state-up)
 
-## End Goal
+## End Goal <span id="end-goal"/>
 
 The goal of this post is to show how you can _communicate between two different depth child components_.  I want an event fired by one child component to trigger a specific action on the other child.  One way to do this is to create some form of state in the _parent component_ that both children can access via their props.
 
@@ -27,7 +27,7 @@ I'm using this pattern to create a set of controls that are always visible to th
 
 For clarity, in a recent project I'm emulating a old school GameBoy interface, which is pretty unique, but I'll try to expose the fundamentals of the pattern in this post so it is useful for all cases.
 
-## The component tree
+## The component tree <span id="the-component-tree"/>
 
 Let's assume we have a component tree that looks like this
 ```
@@ -64,7 +64,7 @@ Ok, looking at the two components we want to interact, we have these two specifi
 1. Controls component fires "down" event
 1. Screen should create a list of items to interact with and render them, and re-render them when the active item changes
 
-## Lift state up
+## Lift state up <span id="lift-state-up"/>
 
 Let's play matchmaker and get these two components "hooked up".  To do that we will use the _lift state up_ strategy.  These components need to interact with a common piece of _state_ that we'll place _into the parent component_.
 
