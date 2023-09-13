@@ -20,7 +20,7 @@ This is a pretty short read, but here's the outline
 - [Online Examples](#online-examples)
 - [Understand The Components](#understand-the-components)
 
-## Manifest Version
+## Manifest Version <span id="manifest-version"/>
 
 To create the most updated version of a Chrome Extension you should be using _Manifest Version 3_.  It is the latest version of the manifest, therefore, it wil be the most supported version going forward.  _If you can, use this version of the manifest_!  It will keep you updated (as of May 2021) and help you avoid the need to migrate too soon after creating your extension.
 
@@ -32,7 +32,7 @@ So, if you start in V3, and find you actually need V2, only then, should you act
 
 Start in V2 if you can't use V3 for something specific.
 
-## Online Examples
+## Online Examples <span id="online-examples"/>
 
 In my short experience, most examples I've run into online have been for the previous manifest version (2).  Keep this in mind when you are looking to do something specific, and you've been reading up in a tutorial or video made by somebody else.
 
@@ -42,7 +42,7 @@ In particular for me, I've been having trouble figuring out how to _disable and 
 
 (Maybe I've just totally missed it in the docs, and I understand the docs wrong, but it seems that's when you call disable() it is supposed grey out the icon and prevent the popup from appearing.  If anyone has done this with V3, please share!)
 
-## Understand Environment Isolation
+## Understand Environment Isolation <span id="understand-the-components"/>
 
 I jumped straight in, no mentor, no previous knowledge, ready to make a mess of things :D.  It went something like this:
 1. Looked up Chrome Developer Extensions in Google
