@@ -17,7 +17,7 @@ This post will have a few short sections.
 - [Using VS Code's Compare Feature](#using-vs-codes-compare-feature) - This helps you visualize what is actually the same in two different snippets of code.
 - [Move Similar Code to a Function](#move-similar-code-to-a-function) - This shows the refactored version of the code.
 
-## Example Code
+## Example Code <span id="example-code"/>
 
 Here is a snippet of code, note, it hasn't actually been tested or used, but is for an example.  Two main sections, both loading data into elements on the page.  You may notice that the code is essentially doing the same thing in both sections.
 
@@ -66,7 +66,7 @@ const n64Games = document.getElementById('n64Games')
 n64Games.innerHTML = n64GamesList.toString()
 ```
 
-## Using VS Code's Compare Feature
+## Using VS Code's Compare Feature <span id="using-vs-codes-compare-feature"/>
 
 It would be nice to visually see what exactly is different between the two sections, and VS Code provides such a feature.
 
@@ -84,7 +84,7 @@ You can see in the image above, that it highlights the words and lines that are 
 
 This is a very simple example, where a lot of the lines are similar.  In other _real world_ scenarios it might not be quite as obvious, and there may be extra lines in the left file that don't exist in the right and vice versa.  The idea behind the feature and this strategy is to be able to quickly observe the differences without painstakingly reading each line of both sections.
 
-## Move Similar Code to a Function
+## Move Similar Code to a Function <span id="move-similar-code-to-a-function"/>
 
 For my code above, I'm able to refactor it to this based on the hints in the two panes.
 
